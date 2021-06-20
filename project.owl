@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xml:base="http://nfu.edu.csie.ccsd/" 
+         xmlns:owl="http://www.w3.org/2002/07/owl#" 
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+         
+    <!-- ====================================================================================-->
+    <!--=================== 資訊內容 ========================== -->
+    <!-- 作者  (Inverse)  -->
+    <owl:ObjectProperty rdf:ID="Created_By">
+        <owl:inverseOf rdf:resource="#Creator"/>
+        <rdfs:domain rdf:resource="#Infomation_Content"/>
+        <rdfs:range rdf:resource="#Author"/>
+    </owl:ObjectProperty>
+
+    <!-- 組織  (Inverse)  -->
+    <owl:ObjectProperty rdf:ID="Defined_By">
+        <owl:inverseOf rdf:resource="#Define"/>
+        <rdfs:domain rdf:resource="#Infomation_Content"/>
+        <rdfs:range rdf:resource="#Organization"/>
+    </owl:ObjectProperty>
+
+    <!-- 公司  (Inverse)  -->
+    <owl:ObjectProperty rdf:ID="Released_By">
+        <owl:inverseOf rdf:resource="#Release"/>
+        <rdfs:domain rdf:resource="#Infomation_Content"/>
+        <rdfs:range rdf:resource="#Company"/>
+    </owl:ObjectProperty>
+
+    <!---->
+    <!-- 產出年分 (Data) 非負整數 -->
+    <owl:DatatypeProperty rdf:ID="Release_Year">
+		<rdfs:domain rdf:resource="#Infomation_Content"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+	</owl:DatatypeProperty>
+
+    
+    <!-- ====================================================================================-->
+    <!--=================== 程式語言 ===|> 資訊內容  ========================== -->
+    <!-- 程式語言  -->
+    <owl:Class rdf:ID="Program_Language">
+        <rdfs:subClassOf rdf:resource="#Infomation_Content"/>
+    </owl:Class>
+
+    <!-- 軟體 創造  (Inverse)  -->
+    <owl:ObjectProperty rdf:ID="Develope">
+        <owl:inverseOf rdf:resource="#Developed_By"/>
+        <rdfs:domain rdf:resource="#Program_Language"/>
+        <rdfs:range rdf:resource="#Software"/>
+    </owl:ObjectProperty>
+
+    <!-- ISO標準號  (Inverse Functional)  -->
+    <owl:ObjectProperty rdf:ID="Identifed_By">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <owl:inverseOf rdf:resource="#Identify"/>
+        <rdfs:domain rdf:resource="#Program_Language"/>
+        <rdfs:range rdf:resource="#Standardized"/>
+    </owl:ObjectProperty>
+
+    <!-- 組合語言 演化於  (Transitive)  -->
+    <owl:ObjectProperty rdf:ID="Evolute_From">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="#Program_Language"/>
+        <rdfs:range rdf:resource="#Program_Language"/>
+        </owl:ObjectProperty>
+    <!-- ====================================================================================-->
+    <!--=================== 組合語言 ===|> 程式語言 ===|> 資訊內容  ========================== -->
+    <!-- 組合語言  -->
+    <owl:Class rdf:ID="Assembly_Language">
+        <rdfs:subClassOf rdf:resource="#Program_Language"/>
+    </owl:Class>
+
+    <!-- ====================================================================================-->
+    <!--=================== 高階語言 ===|> 程式語言 ===|> 資訊內容  ========================== -->
+    <!-- 高階語言  -->
+    <owl:Class rdf:ID="High-level_Programming_Language">
+        <rdfs:subClassOf rdf:resource="#Program_Language"/>
+    </owl:Class>
+
+
+    <!-- ====================================================================================-->
+    <!--=================== 物件導向語言 ===|> 程式語言 ===|> 資訊內容  ========================== -->
+    <!-- 物件導向語言  -->
+    <owl:Class rdf:ID="Object_Orient_Programming_Language">
+        <rdfs:subClassOf rdf:resource="#High-level_Programming_Language"/>
+    </owl:Class>
+
+
+    <!-- ====================================================================================-->
+    <!--=================== 電腦程式 ===|> 資訊內容  ========================== -->
+    <!-- 程式語言  -->
+    <owl:Class rdf:ID="Computer_Program">
+        <rdfs:subClassOf rdf:resource="#Infomation_Content"/>
+    </owl:Class>
+
+
+    <!-- ====================================================================================-->
+    <!--=================== 軟體 ===|> 資訊內容  ========================== -->
+    <!-- 軟體  -->
+    <owl:Class rdf:ID="Software">
+        <rdfs:subClassOf rdf:resource="#Infomation_Content"/>
+    </owl:Class>
+
+    <owl:Class rdf:ID="Application_Software">
+        <rdfs:subClassOf rdf:resource="#Software"/>
+    </owl:Class>
+
+    <owl:Class rdf:ID="System_Software">
+        <rdfs:subClassOf rdf:resource="#Software"/>
+    </owl:Class>
+
+    <owl:Class rdf:ID="Malicious_Software">
+        <rdfs:subClassOf rdf:resource="#Software"/>
+    </owl:Class>
+
+    <owl:Class rdf:ID="Middleware">
+        <rdfs:subClassOf rdf:resource="#Software"/>
+    </owl:Class>
+
+    
+    <!-- 軟體與軟體的兼容性 (Symmetric) -->
+    <owl:SymmetricProperty rdf:ID="Compatibility">
+        <rdfs:domain rdf:resource="#Software"/>
+        <rdfs:range rdf:resource="#Software"/>
+    </owl:SymmetricProperty>
+
+    <!-- ====================================================================================-->
+    <!--=================== 授權 ===|> 資訊內容  ========================== -->
+    <!-- 授權  -->
+    <owl:Class rdf:ID="License">
+        <rdfs:subClassOf rdf:resource="#Infomation_Content"/>
+    </owl:Class>
+
+    <!-- 軟體 授權 (Functional)  -->
+    <owl:ObjectProperty rdf:ID="Has_License">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#Software"/>
+        <rdfs:range rdf:resource="#License"/>
+    </owl:ObjectProperty>
+
+
+    <!-- ====================================================================================-->
+    <!--=================== 編譯器 ===|> 電腦程式 ===|> 資訊內容  ========================== -->
+    <!-- 編譯器  -->
+    <owl:Class rdf:ID="Compiler">
+        <rdfs:subClassOf rdf:resource="#Computer_Program"/>
+    </owl:Class>
+
+    <!-- 程式語言 編譯 (Functional)  -->
+    <owl:ObjectProperty rdf:ID="Compile">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#Compiler"/>
+        <rdfs:range rdf:resource="#Program_Language"/>
+    </owl:ObjectProperty>
+    <!-- ====================================================================================-->
+    <!--=================== 外掛 ===|> 電腦程式  ========================== -->
+    <!-- 外掛 -->
+    <owl:Class rdf:ID="Plugin">
+        <rdfs:subClassOf rdf:resource="#Computer_Program"/>
+    </owl:Class>
+
+   <!-- 軟體 擴充於  (Inverse)  -->
+    <owl:ObjectProperty rdf:ID="Addin">
+        <owl:inverseOf rdf:resource="#Addon"/>
+        <rdfs:domain rdf:resource="#Application_Software"/>
+        <rdfs:range rdf:resource="#Plugin"/>
+    </owl:ObjectProperty>
+    
+
+</rdf:RDF>

@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<rdf:RDF xml:base="http://nfu.edu.csie.ccsd/" 
+         xmlns="http://nfu.edu.csie.ccsd/#" 
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+
+    <!-- ====================================================================================-->
+    <!--  Microsoft Windows -->
+    <System_Software rdf:ID="Windows_10">
+        <Release_Year>1985</Release_Year>
+        
+        <!-- 被公司發行 (Inverse Property) -->
+        <Release_By>
+            <Company rdf:about="#Microsoft"/>
+        </Release_By>
+
+        <!-- 使用語言開發 (Inverse Property) -->
+        <Developed_By>
+            <Programming_Language rdf:about="#C++"/>
+        </Developed_By>
+
+        <!-- 擁有授權 (Functional Property) -->
+        <Has_License>
+            <Licesse rdf:about="#nonfree"/>
+        </Has_License>
+        
+        <!-- 軟體兼容性 (Symmetric Property) -->
+        <Compatibility>
+            <Application_Software rdf:about="#Microsoft_Office" />
+        </Compatibility>
+
+    </System_Software>
+
+    <!-- ====================================================================================-->
+
+    <!-- ====================================================================================-->
+    <!--  C++ -->
+    <Object_Orient_Programming_Language rdf:ID="C++">
+        <Release_Year>1983</Release_Year>
+        
+        <!-- 被作者發明 (Inverse Property) -->
+        <Created_By>
+            <Author rdf:about="#Bjarne_Stroustrup"/>
+        </Created_By>
+       
+        <!-- 開發了 (Inverse Property) -->
+        <Develope>
+            <System_Software rdf:about="#Windows_10"/>
+        </Develope>
+        <Develope>
+            <Application_Software rdf:about="#Microsoft_Office"/>
+        </Develope>
+
+        <!-- 擁有授權 (Functional Property) -->
+        <Has_License>
+            <Licesse rdf:about="#free"/>
+        </Has_License>
+
+        <!-- 被制定標準 (Inverse Functional Property) -->
+        <Identifed_By>
+            <Standardized rdf:about="#ISO/IEC_14882"/>
+        </Identifed_By>
+
+        <!-- 演化於 (Transitive Property) -->
+        <Evolute_From>
+            <High-level_Programming_Language rdf:about="#C"/>
+        </Evolute_From>
+
+    </Object_Orient_Programming_Language>
+
+
+    <!-- ====================================================================================-->
+    <!--  C -->
+    <High-level_Programming_Language rdf:ID="C">
+        <Release_Year>1972</Release_Year>
+        
+        <!-- 被作者發明 (Inverse Property) -->
+        <Created_By>
+            <Author rdf:about="#Dennis_Ritchie"/>
+        </Created_By>
+       
+        <!-- 開發了 (Inverse Property) -->
+        <Develope>
+            <System_Software rdf:about="#Windows_10"/>
+        </Develope>
+        <Develope>
+            <Application_Software rdf:about="#Microsoft_Office"/>
+        </Develope>
+
+
+        <!-- 擁有授權 (Functional Property) -->
+        <Has_License>
+            <Licesse rdf:about="#free"/>
+        </Has_License>
+
+        <!-- 被制定標準 (Inverse Functional Property) -->
+        <Identifed_By>
+            <Standardized rdf:about="#ISO/IEC_9899"/>
+        </Identifed_By>
+
+        <!-- 演化於 (Transitive Property) -->
+        <Evolute_From>
+            <Assembly_Language rdf:about="#BCPL"/>
+        </Evolute_From>
+
+    </High-level_Programming_Language>
+
+</rdf:RDF>
